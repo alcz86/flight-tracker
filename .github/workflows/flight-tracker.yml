@@ -1,0 +1,58 @@
+name: Flight tracker Tromsø
+
+on:
+  schedule:
+    # 3 razy dziennie: ok. 7:17, 13:17 i 19:17 czasu polskiego (latem; zimą godzinę wcześniej)
+    - cron: "17 5,11,17 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: flight-tracker
+  cancel-in-progress: false
+
+jobs:
+  track:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Check prices
+        id: track
+        run: python tracker.py
+
+      - name: Commit report
+        if: always() && steps.track.outcome != 'skipped'
+        run: |
+          git config user.name "flight-tracker-bot"
+          git config user.email "flight-tracker-bot@users.noreply.github.com"
+          git add REPORT.md data
+          git commit -m "Flight tracker: aktualizacja cen $(date -u +%F)" || exit 0
+          git pull --rebase origin "${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
+
+      - name: Notify about price change
+        if: steps.track.outputs.alert == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          OWNER: ${{ github.repository_owner }}
+        run: |
+          TITLE="Tracker lotów do Tromsø"
+          NUM=$(gh issue list --state open --search "in:title \"$TITLE\"" --json number --jq '.[0].number')
+          { echo "@${OWNER}"; echo; cat alert.md; } > /tmp/body.md
+          if [ -z "$NUM" ]; then
+            gh issue create --title "$TITLE" --body-file /tmp/body.md
+          else
+            gh issue comment "$NUM" --body-file /tmp/body.md
+          fi

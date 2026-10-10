@@ -1,0 +1,23 @@
+{
+  "destination": "TOS",
+  "origins": [
+    {"code": "KTW", "name": "Katowice"},
+    {"code": "KRK", "name": "Kraków"},
+    {"code": "GDN", "name": "Gdańsk"}
+  ],
+  "date_from": "2027-03-01",
+  "date_to": "2027-03-31",
+  "passengers": {"adults": 4, "children": 1},
+  "carry_on_bags": 1,
+  "max_stops": 1,
+  "min_full_days": 2,
+  "max_full_days": 3,
+  "full_day_if_arrival_before_hour": 10,
+  "full_day_if_departure_after_hour": 20,
+  "priority_tolerance_pct": 15,
+  "alert_drop_pct": 5,
+  "alert_below_total_pln": 5000,
+  "currency": "PLN",
+  "request_delay_seconds": 2.5,
+  "top_n": 5
+}
