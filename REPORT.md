@@ -1,6 +1,6 @@
 # Tracker lotów do Tromsø
 
-Ostatnie sprawdzenie: **2026-10-10 13:24 UTC**  
+Ostatnie sprawdzenie: **2026-10-10 20:33 UTC**  
 Okres: 2027-03-01 – 2027-03-31, 4 dorosłych + 1 dziecko, bagaż podręczny: 1, 2–3 pełne dni na miejscu.  
 Ceny to łączny koszt dla całej grupy (Google Flights, z szacunkiem opłat za bagaż podręczny).
 
@@ -30,10 +30,10 @@ Brak połączeń spełniających warunki.
 | Cena | Dni | Tam | Powrót |
 |---|---|---|---|
 | **2362 PLN** | 2 | [Wed 17.03 05:30 → 08:25 (Wizz Air, bezpośredni) — 745 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMTcoAWoFEgNHRE5yBRIDVE9TQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) | [Fri 19.03 09:00 → 11:50 (Wizz Air, bezpośredni) — 1617 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMTkoAWoFEgNUT1NyBRIDR0ROQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) |
-| **2512 PLN** | 2 | [Mon 29.03 18:50 → 21:35 (Wizz Air, bezpośredni) — 895 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMjkoAWoFEgNHRE5yBRIDVE9TQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) | [Wed 31.03 22:10 → 00:55 (Wizz Air, bezpośredni) — 1617 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMzEoAWoFEgNUT1NyBRIDR0ROQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) |
 | **2641 PLN** | 3 | [Sun 07.03 05:30 → 08:25 (Wizz Air, bezpośredni) — 1495 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMDcoAWoFEgNHRE5yBRIDVE9TQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) | [Wed 10.03 09:00 → 11:50 (Wizz Air, bezpośredni) — 1146 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMTAoAWoFEgNUT1NyBRIDR0ROQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) |
 | **2641 PLN** | 2 | [Mon 08.03 05:30 → 08:25 (Wizz Air, bezpośredni) — 1495 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMDgoAWoFEgNHRE5yBRIDVE9TQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) | [Wed 10.03 09:00 → 11:50 (Wizz Air, bezpośredni) — 1146 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMTAoAWoFEgNUT1NyBRIDR0ROQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) |
 | **2662 PLN** | 2 | [Wed 24.03 05:30 → 08:25 (Wizz Air, bezpośredni) — 1045 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMjQoAWoFEgNHRE5yBRIDVE9TQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) | [Fri 26.03 09:00 → 11:50 (Wizz Air, bezpośredni) — 1617 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMjYoAWoFEgNUT1NyBRIDR0ROQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) |
+| **2662 PLN** | 2 | [Mon 29.03 18:50 → 21:35 (Wizz Air, bezpośredni) — 1045 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMjkoAWoFEgNHRE5yBRIDVE9TQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) | [Wed 31.03 22:10 → 00:55 (Wizz Air, bezpośredni) — 1617 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMzEoAWoFEgNUT1NyBRIDR0ROQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) |
 
 ## Problemy z pobieraniem
 
