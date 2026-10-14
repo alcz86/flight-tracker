@@ -72,6 +72,7 @@ def test_run_end_to_end(tmp_path, monkeypatch):
         monkeypatch.setattr(tracker, name, tmp_path / fname)
     monkeypatch.setattr(tracker, "STATE_FILE", tmp_path / "data" / "state.json")
     monkeypatch.setattr(tracker, "HISTORY_FILE", tmp_path / "data" / "history.csv")
+    monkeypatch.setattr(tracker, "TRIPS_FILE", tmp_path / "data" / "trips_latest.csv")
     monkeypatch.delenv("GITHUB_OUTPUT", raising=False)
 
     prices = {"KTW": 800, "KRK": 700, "GDN": 300}
@@ -90,6 +91,9 @@ def test_run_end_to_end(tmp_path, monkeypatch):
     assert result["recommendation"].origin == "GDN"
     assert "Polecana opcja" in (tmp_path / "REPORT.md").read_text()
     assert json.loads((tmp_path / "data" / "state.json").read_text())["KTW"] == 1600
+    trips_csv = (tmp_path / "data" / "trips_latest.csv").read_text().splitlines()
+    assert trips_csv[0].startswith("origin,total,full_days") and len(trips_csv) > 3
+    assert "Najtaniej na 2 pełne dni" in (tmp_path / "REPORT.md").read_text()
 
     prices["KTW"] = 500
     result = tracker.run(CFG, fetch=fake_fetch, sleep=lambda s: None, now=datetime(2026, 10, 6))
