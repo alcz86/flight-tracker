@@ -21,6 +21,7 @@ ROOT = Path(__file__).resolve().parent
 DATA_DIR = ROOT / "data"
 STATE_FILE = DATA_DIR / "state.json"
 HISTORY_FILE = DATA_DIR / "history.csv"
+TRIPS_FILE = DATA_DIR / "trips_latest.csv"
 REPORT_FILE = ROOT / "REPORT.md"
 ALERT_FILE = ROOT / "alert.md"
 
@@ -222,6 +223,15 @@ def render_report(cfg, names, trips_by_origin, recommendation, errors, now) -> s
                 f"| [{fmt_leg(t.inbound)}]({t.inbound.url}) |"
             )
         lines.append("")
+        # trips są posortowane po cenie, więc pierwsza pasująca para jest najtańsza
+        for n in range(cfg["min_full_days"], cfg["max_full_days"] + 1):
+            best_n = next((t for t in trips if t.full_days == n), None)
+            if best_n:
+                lines.append(
+                    f"- Najtaniej na {n} pełne dni: **{best_n.total} {cur}** — "
+                    f"tam {fmt_leg(best_n.outbound)}, powrót {fmt_leg(best_n.inbound)}"
+                )
+        lines.append("")
 
     if errors:
         lines += ["## Problemy z pobieraniem", "", *[f"- {e}" for e in errors], ""]
@@ -270,6 +280,20 @@ def run(cfg: dict, fetch=fetch_legs, sleep=time.sleep, now: datetime | None = No
                 t.inbound.departure.isoformat(timespec="minutes"),
                 t.full_days, "/".join(sorted(set(t.outbound.airlines + t.inbound.airlines))),
             ])
+
+    with open(TRIPS_FILE, "w", newline="", encoding="utf-8") as f:
+        w = csv.writer(f)
+        w.writerow(["origin", "total", "full_days", "outbound", "outbound_price",
+                    "inbound", "inbound_price", "airlines", "stops"])
+        for c, trips in trips_by_origin.items():
+            for t in trips:
+                w.writerow([
+                    c, t.total, t.full_days,
+                    t.outbound.departure.isoformat(timespec="minutes"), t.outbound.price,
+                    t.inbound.departure.isoformat(timespec="minutes"), t.inbound.price,
+                    "/".join(sorted(set(t.outbound.airlines + t.inbound.airlines))),
+                    f"{t.outbound.stops}+{t.inbound.stops}",
+                ])
 
     report = render_report(cfg, names, trips_by_origin, recommendation, errors, now)
     REPORT_FILE.write_text(report, encoding="utf-8")
