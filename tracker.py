@@ -162,16 +162,27 @@ def pick_recommendation(best_by_origin: dict[str, Trip], origins: list[str], tol
     return choice
 
 
-def find_alerts(best_by_origin: dict[str, Trip], previous: dict[str, int], cfg: dict) -> list[str]:
+def find_alerts(
+    best_by_origin: dict[str, Trip], previous: dict[str, int], cfg: dict, below_alerted: dict | None = None
+) -> list[str]:
+    """Alerty o spadku ceny i o cenie poniżej progu.
+
+    below_alerted (lotnisko -> najniższa cena, o której już powiadomiono poniżej progu)
+    jest aktualizowane w miejscu. Dzięki temu chwilowe zniknięcie lotu z wyników
+    Google nie powoduje ponownego alertu o tej samej cenie.
+    """
     alerts = []
+    below_alerted = {} if below_alerted is None else below_alerted
+    threshold = cfg.get("alert_below_total_pln")
+    drop_pct = cfg.get("alert_drop_pct")
     for code, trip in best_by_origin.items():
-        old = previous.get(code)
-        if old is None:
+        if threshold and trip.total < threshold and trip.total < below_alerted.get(code, threshold):
+            alerts.append(f"{code}: cena poniżej {threshold} {cfg['currency']} — {trip.total} {cfg['currency']}")
+            below_alerted[code] = trip.total
             continue
-        if trip.total <= old * (1 - cfg["alert_drop_pct"] / 100):
+        old = previous.get(code)
+        if drop_pct and old is not None and trip.total <= old * (1 - drop_pct / 100):
             alerts.append(f"{code}: cena spadła z {old} do {trip.total} {cfg['currency']}")
-        elif trip.total <= cfg["alert_below_total_pln"] < old:
-            alerts.append(f"{code}: cena poniżej progu {cfg['alert_below_total_pln']} — {trip.total} {cfg['currency']}")
     return alerts
 
 
@@ -264,9 +275,11 @@ def run(cfg: dict, fetch=fetch_legs, sleep=time.sleep, now: datetime | None = No
 
     DATA_DIR.mkdir(exist_ok=True)
     previous = json.loads(STATE_FILE.read_text()) if STATE_FILE.exists() else {}
-    alerts = find_alerts(best, previous, cfg)
+    below_alerted = previous.pop("below_alerted", {})
+    alerts = find_alerts(best, previous, cfg, below_alerted)
     # nie nadpisuj stanu lotniska, dla którego tym razem nic nie pobrano
-    STATE_FILE.write_text(json.dumps({**previous, **{c: t.total for c, t in best.items()}}, indent=2))
+    state = {**previous, **{c: t.total for c, t in best.items()}, "below_alerted": below_alerted}
+    STATE_FILE.write_text(json.dumps(state, indent=2))
 
     new_file = not HISTORY_FILE.exists()
     with open(HISTORY_FILE, "a", newline="", encoding="utf-8") as f:

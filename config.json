@@ -15,8 +15,8 @@
   "full_day_if_arrival_before_hour": 10,
   "full_day_if_departure_after_hour": 20,
   "priority_tolerance_pct": 15,
-  "alert_drop_pct": 5,
-  "alert_below_total_pln": 5000,
+  "alert_drop_pct": null,
+  "alert_below_total_pln": 2000,
   "currency": "PLN",
   "request_delay_seconds": 2.5,
   "top_n": 5

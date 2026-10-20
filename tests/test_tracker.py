@@ -61,10 +61,26 @@ def test_priority_keeps_katowice_unless_other_much_cheaper():
 
 
 def test_alerts_on_drop_and_threshold():
-    best = {"KTW": _trip("KTW", 4500), "KRK": _trip("KRK", 6000), "GDN": _trip("GDN", 4950)}
-    alerts = tracker.find_alerts(best, {"KTW": 4800, "KRK": 6100, "GDN": 5100}, CFG)
-    assert alerts == ["KTW: cena spadła z 4800 do 4500 PLN", "GDN: cena poniżej progu 5000 — 4950 PLN"]
-    assert tracker.find_alerts(best, {}, CFG) == []
+    cfg = {**CFG, "alert_drop_pct": 5, "alert_below_total_pln": 5000}
+    best = {"KTW": _trip("KTW", 4500), "KRK": _trip("KRK", 6000), "GDN": _trip("GDN", 5100)}
+    alerts = tracker.find_alerts(best, {"KTW": 4800, "KRK": 6100, "GDN": 5300}, cfg)
+    assert alerts == ["KTW: cena poniżej 5000 PLN — 4500 PLN"]
+    assert tracker.find_alerts(best, {}, {**cfg, "alert_below_total_pln": None}) == []
+    best["KRK"] = _trip("KRK", 5500)
+    assert tracker.find_alerts(best, {"KRK": 6000}, {**cfg, "alert_below_total_pln": None}) == [
+        "KRK: cena spadła z 6000 do 5500 PLN"
+    ]
+
+
+def test_threshold_alert_only_for_new_lower_price():
+    cfg = {**CFG, "alert_drop_pct": None, "alert_below_total_pln": 2000}
+    alerted = {}
+    assert tracker.find_alerts({"GDN": _trip("GDN", 2100)}, {}, cfg, alerted) == []
+    assert tracker.find_alerts({"GDN": _trip("GDN", 1950)}, {}, cfg, alerted) == ["GDN: cena poniżej 2000 PLN — 1950 PLN"]
+    # lot na chwilę znika z wyników, potem wraca z tą samą ceną -> bez ponownego alertu
+    assert tracker.find_alerts({"GDN": _trip("GDN", 2300)}, {}, cfg, alerted) == []
+    assert tracker.find_alerts({"GDN": _trip("GDN", 1950)}, {}, cfg, alerted) == []
+    assert tracker.find_alerts({"GDN": _trip("GDN", 1890)}, {}, cfg, alerted) == ["GDN: cena poniżej 2000 PLN — 1890 PLN"]
 
 
 def test_run_end_to_end(tmp_path, monkeypatch):
@@ -86,7 +102,7 @@ def test_run_end_to_end(tmp_path, monkeypatch):
         return [leg(o, d, datetime(day.year, day.month, day.day, 9),
                     datetime(day.year, day.month, day.day, 13), prices[o])]
 
-    result = tracker.run(CFG, fetch=fake_fetch, sleep=lambda s: None, now=datetime(2026, 10, 5))
+    result = tracker.run({**CFG, "alert_drop_pct": 5}, fetch=fake_fetch, sleep=lambda s: None, now=datetime(2026, 10, 5))
     assert result["best"]["KTW"].total == 1600
     assert result["recommendation"].origin == "GDN"
     assert "Polecana opcja" in (tmp_path / "REPORT.md").read_text()
@@ -96,5 +112,5 @@ def test_run_end_to_end(tmp_path, monkeypatch):
     assert "Najtaniej na 2 pełne dni" in (tmp_path / "REPORT.md").read_text()
 
     prices["KTW"] = 500
-    result = tracker.run(CFG, fetch=fake_fetch, sleep=lambda s: None, now=datetime(2026, 10, 6))
+    result = tracker.run({**CFG, "alert_drop_pct": 5}, fetch=fake_fetch, sleep=lambda s: None, now=datetime(2026, 10, 6))
     assert result["alerts"] and (tmp_path / "alert.md").exists()
