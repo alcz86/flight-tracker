@@ -12,8 +12,11 @@ jest polecane tylko wtedy, gdy jest tańsze o ponad 15% (`priority_tolerance_pct
 - `REPORT.md` – najtańsze opcje dla każdego lotniska i polecana opcja, z linkami do Google Flights.
 - `data/history.csv` – historia najlepszej ceny z każdego sprawdzenia.
 - Powiadomienie: issue „Tracker lotów do Tromsø” z oznaczeniem właściciela repo
-  (GitHub wysyła mail), gdy cena spadnie o ≥5% (`alert_drop_pct`)
-  albo pierwszy raz zejdzie poniżej 5000 zł (`alert_below_total_pln`).
+  (GitHub wysyła mail), gdy najtańsza opcja z któregoś lotniska spadnie poniżej
+  2000 zł (`alert_below_total_pln`). Kolejny alert przychodzi tylko przy jeszcze niższej cenie.
+  Alerty o każdym spadku ceny (`alert_drop_pct`) są wyłączone (`null`), bo Google
+  czasem chwilowo nie pokazuje lotu i dawało to fałszywe alarmy.
+- `data/trips_latest.csv` – wszystkie pary lotów z ostatniego sprawdzenia.
 - Gdy żadne lotnisko nie zwróci wyników (np. Google zablokuje zapytania), job kończy się
   błędem i GitHub wysyła mail o nieudanym workflow.
 

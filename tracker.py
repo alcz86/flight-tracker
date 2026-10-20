@@ -21,6 +21,7 @@ ROOT = Path(__file__).resolve().parent
 DATA_DIR = ROOT / "data"
 STATE_FILE = DATA_DIR / "state.json"
 HISTORY_FILE = DATA_DIR / "history.csv"
+TRIPS_FILE = DATA_DIR / "trips_latest.csv"
 REPORT_FILE = ROOT / "REPORT.md"
 ALERT_FILE = ROOT / "alert.md"
 
@@ -161,16 +162,27 @@ def pick_recommendation(best_by_origin: dict[str, Trip], origins: list[str], tol
     return choice
 
 
-def find_alerts(best_by_origin: dict[str, Trip], previous: dict[str, int], cfg: dict) -> list[str]:
+def find_alerts(
+    best_by_origin: dict[str, Trip], previous: dict[str, int], cfg: dict, below_alerted: dict | None = None
+) -> list[str]:
+    """Alerty o spadku ceny i o cenie poniżej progu.
+
+    below_alerted (lotnisko -> najniższa cena, o której już powiadomiono poniżej progu)
+    jest aktualizowane w miejscu. Dzięki temu chwilowe zniknięcie lotu z wyników
+    Google nie powoduje ponownego alertu o tej samej cenie.
+    """
     alerts = []
+    below_alerted = {} if below_alerted is None else below_alerted
+    threshold = cfg.get("alert_below_total_pln")
+    drop_pct = cfg.get("alert_drop_pct")
     for code, trip in best_by_origin.items():
-        old = previous.get(code)
-        if old is None:
+        if threshold and trip.total < threshold and trip.total < below_alerted.get(code, threshold):
+            alerts.append(f"{code}: cena poniżej {threshold} {cfg['currency']} — {trip.total} {cfg['currency']}")
+            below_alerted[code] = trip.total
             continue
-        if trip.total <= old * (1 - cfg["alert_drop_pct"] / 100):
+        old = previous.get(code)
+        if drop_pct and old is not None and trip.total <= old * (1 - drop_pct / 100):
             alerts.append(f"{code}: cena spadła z {old} do {trip.total} {cfg['currency']}")
-        elif trip.total <= cfg["alert_below_total_pln"] < old:
-            alerts.append(f"{code}: cena poniżej progu {cfg['alert_below_total_pln']} — {trip.total} {cfg['currency']}")
     return alerts
 
 
@@ -222,6 +234,15 @@ def render_report(cfg, names, trips_by_origin, recommendation, errors, now) -> s
                 f"| [{fmt_leg(t.inbound)}]({t.inbound.url}) |"
             )
         lines.append("")
+        # trips są posortowane po cenie, więc pierwsza pasująca para jest najtańsza
+        for n in range(cfg["min_full_days"], cfg["max_full_days"] + 1):
+            best_n = next((t for t in trips if t.full_days == n), None)
+            if best_n:
+                lines.append(
+                    f"- Najtaniej na {n} pełne dni: **{best_n.total} {cur}** — "
+                    f"tam {fmt_leg(best_n.outbound)}, powrót {fmt_leg(best_n.inbound)}"
+                )
+        lines.append("")
 
     if errors:
         lines += ["## Problemy z pobieraniem", "", *[f"- {e}" for e in errors], ""]
@@ -254,9 +275,11 @@ def run(cfg: dict, fetch=fetch_legs, sleep=time.sleep, now: datetime | None = No
 
     DATA_DIR.mkdir(exist_ok=True)
     previous = json.loads(STATE_FILE.read_text()) if STATE_FILE.exists() else {}
-    alerts = find_alerts(best, previous, cfg)
+    below_alerted = previous.pop("below_alerted", {})
+    alerts = find_alerts(best, previous, cfg, below_alerted)
     # nie nadpisuj stanu lotniska, dla którego tym razem nic nie pobrano
-    STATE_FILE.write_text(json.dumps({**previous, **{c: t.total for c, t in best.items()}}, indent=2))
+    state = {**previous, **{c: t.total for c, t in best.items()}, "below_alerted": below_alerted}
+    STATE_FILE.write_text(json.dumps(state, indent=2))
 
     new_file = not HISTORY_FILE.exists()
     with open(HISTORY_FILE, "a", newline="", encoding="utf-8") as f:
@@ -270,6 +293,20 @@ def run(cfg: dict, fetch=fetch_legs, sleep=time.sleep, now: datetime | None = No
                 t.inbound.departure.isoformat(timespec="minutes"),
                 t.full_days, "/".join(sorted(set(t.outbound.airlines + t.inbound.airlines))),
             ])
+
+    with open(TRIPS_FILE, "w", newline="", encoding="utf-8") as f:
+        w = csv.writer(f)
+        w.writerow(["origin", "total", "full_days", "outbound", "outbound_price",
+                    "inbound", "inbound_price", "airlines", "stops"])
+        for c, trips in trips_by_origin.items():
+            for t in trips:
+                w.writerow([
+                    c, t.total, t.full_days,
+                    t.outbound.departure.isoformat(timespec="minutes"), t.outbound.price,
+                    t.inbound.departure.isoformat(timespec="minutes"), t.inbound.price,
+                    "/".join(sorted(set(t.outbound.airlines + t.inbound.airlines))),
+                    f"{t.outbound.stops}+{t.inbound.stops}",
+                ])
 
     report = render_report(cfg, names, trips_by_origin, recommendation, errors, now)
     REPORT_FILE.write_text(report, encoding="utf-8")
