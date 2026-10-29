@@ -1,6 +1,6 @@
 # Tracker lotów do Tromsø
 
-Ostatnie sprawdzenie: **2026-10-29 11:29 UTC**  
+Ostatnie sprawdzenie: **2026-10-29 21:48 UTC**  
 Okres: 2027-03-01 – 2027-03-31, 4 dorosłych + 1 dziecko, bagaż podręczny: 1, 2–3 pełne dni na miejscu.  
 Ceny to łączny koszt dla całej grupy (Google Flights, z szacunkiem opłat za bagaż podręczny).
 
@@ -19,14 +19,14 @@ Brak połączeń spełniających warunki.
 
 | Cena | Dni | Tam | Powrót |
 |---|---|---|---|
-| **4396 PLN** | 3 | [Fri 26.03 12:45 → 21:45 (Norwegian, 1 przesiadka) — 2250 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMjYoAWoFEgNLUktyBRIDVE9TQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) | [Tue 30.03 06:15 → 11:45 (Norwegian, 1 przesiadka) — 2146 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMzAoAWoFEgNUT1NyBRIDS1JLQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) |
-| **4586 PLN** | 3 | [Fri 26.03 12:45 → 19:20 (Norwegian, 1 przesiadka) — 2440 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMjYoAWoFEgNLUktyBRIDVE9TQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) | [Tue 30.03 06:15 → 11:45 (Norwegian, 1 przesiadka) — 2146 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMzAoAWoFEgNUT1NyBRIDS1JLQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) |
-| **4694 PLN** | 3 | [Thu 04.03 12:45 → 23:30 (Norwegian, 1 przesiadka) — 2250 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMDQoAWoFEgNLUktyBRIDVE9TQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) | [Mon 08.03 06:10 → 12:05 (Norwegian, 1 przesiadka) — 2444 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMDgoAWoFEgNUT1NyBRIDS1JLQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) |
-| **4719 PLN** | 2 | [Fri 05.03 21:50 → 09:30 (Norwegian, 1 przesiadka) — 2275 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMDUoAWoFEgNLUktyBRIDVE9TQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) | [Mon 08.03 06:10 → 12:05 (Norwegian, 1 przesiadka) — 2444 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMDgoAWoFEgNUT1NyBRIDS1JLQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) |
-| **4777 PLN** | 2 | [Fri 26.03 12:45 → 21:45 (Norwegian, 1 przesiadka) — 2250 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMjYoAWoFEgNLUktyBRIDVE9TQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) | [Mon 29.03 06:15 → 11:45 (Norwegian, 1 przesiadka) — 2527 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMjkoAWoFEgNUT1NyBRIDS1JLQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) |
+| **4208 PLN** | 3 | [Fri 26.03 12:45 → 19:20 (Norwegian, 1 przesiadka) — 2155 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMjYoAWoFEgNLUktyBRIDVE9TQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) | [Tue 30.03 06:15 → 11:45 (Norwegian, 1 przesiadka) — 2053 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMzAoAWoFEgNUT1NyBRIDS1JLQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) |
+| **4315 PLN** | 3 | [Thu 04.03 12:45 → 23:30 (Norwegian, 1 przesiadka) — 2155 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMDQoAWoFEgNLUktyBRIDVE9TQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) | [Mon 08.03 06:10 → 12:05 (Norwegian, 1 przesiadka) — 2160 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMDgoAWoFEgNUT1NyBRIDS1JLQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) |
+| **4340 PLN** | 2 | [Fri 05.03 21:50 → 09:30 (Norwegian, 1 przesiadka) — 2180 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMDUoAWoFEgNLUktyBRIDVE9TQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) | [Mon 08.03 06:10 → 12:05 (Norwegian, 1 przesiadka) — 2160 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMDgoAWoFEgNUT1NyBRIDS1JLQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) |
+| **4552 PLN** | 3 | [Fri 05.03 21:50 → 09:30 (Norwegian, 1 przesiadka) — 2180 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMDUoAWoFEgNLUktyBRIDVE9TQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) | [Tue 09.03 06:10 → 12:05 (Norwegian, 1 przesiadka) — 2372 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMDkoAWoFEgNUT1NyBRIDS1JLQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) |
+| **4587 PLN** | 2 | [Fri 26.03 12:45 → 19:20 (Norwegian, 1 przesiadka) — 2155 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMjYoAWoFEgNLUktyBRIDVE9TQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) | [Mon 29.03 06:15 → 11:45 (Norwegian, 1 przesiadka) — 2432 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMjkoAWoFEgNUT1NyBRIDS1JLQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) |
 
-- Najtaniej na 2 pełne dni: **4719 PLN** — tam Fri 05.03 21:50 → 09:30 (Norwegian, 1 przesiadka) — 2275 zł, powrót Mon 08.03 06:10 → 12:05 (Norwegian, 1 przesiadka) — 2444 zł
-- Najtaniej na 3 pełne dni: **4396 PLN** — tam Fri 26.03 12:45 → 21:45 (Norwegian, 1 przesiadka) — 2250 zł, powrót Tue 30.03 06:15 → 11:45 (Norwegian, 1 przesiadka) — 2146 zł
+- Najtaniej na 2 pełne dni: **4340 PLN** — tam Fri 05.03 21:50 → 09:30 (Norwegian, 1 przesiadka) — 2180 zł, powrót Mon 08.03 06:10 → 12:05 (Norwegian, 1 przesiadka) — 2160 zł
+- Najtaniej na 3 pełne dni: **4208 PLN** — tam Fri 26.03 12:45 → 19:20 (Norwegian, 1 przesiadka) — 2155 zł, powrót Tue 30.03 06:15 → 11:45 (Norwegian, 1 przesiadka) — 2053 zł
 
 ## Gdańsk (GDN)
 
