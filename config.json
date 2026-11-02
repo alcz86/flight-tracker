@@ -10,7 +10,7 @@
   "passengers": {"adults": 4, "children": 1},
   "carry_on_bags": 1,
   "max_stops": 1,
-  "min_full_days": 3,
+  "min_full_days": 2,
   "max_full_days": 3,
   "full_day_if_arrival_before_hour": 0,
   "full_day_if_departure_after_hour": 12,

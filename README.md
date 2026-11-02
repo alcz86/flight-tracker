@@ -2,7 +2,7 @@
 
 Trzy razy dziennie (GitHub Actions, ok. 7:17, 13:17 i 19:17) sprawdza w Google Flights ceny lotów do Tromsø w marcu 2027
 dla 4 dorosłych i 1 dziecka z bagażem podręcznym. Interesują go tylko pary lotów,
-które dają 3 pełne dni na miejscu.
+które dają 2–3 pełne dni na miejscu (najlepiej 3).
 
 Lotniska według priorytetu: **Katowice → Kraków → Gdańsk**. Lotnisko z niższym priorytetem
 jest polecane tylko wtedy, gdy jest tańsze o ponad 15% (`priority_tolerance_pct`).
