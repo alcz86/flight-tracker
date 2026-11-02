@@ -12,6 +12,10 @@ CFG = {
     "date_from": "2027-03-05",
     "date_to": "2027-03-09",
     "request_delay_seconds": 0,
+    # testy logiki dni korzystają z dawnych godzin, niezależnie od config.json
+    "min_full_days": 2,
+    "full_day_if_arrival_before_hour": 10,
+    "full_day_if_departure_after_hour": 20,
 }
 
 
@@ -114,3 +118,11 @@ def test_run_end_to_end(tmp_path, monkeypatch):
     prices["KTW"] = 500
     result = tracker.run({**CFG, "alert_drop_pct": 5}, fetch=fake_fetch, sleep=lambda s: None, now=datetime(2026, 10, 6))
     assert result["alerts"] and (tmp_path / "alert.md").exists()
+
+
+def test_full_days_with_current_config():
+    cfg = tracker.load_config()
+    # dzień przylotu nigdy się nie liczy; dzień wylotu tylko przy wylocie od 12:00
+    assert tracker.full_days(datetime(2027, 3, 17, 8, 10), datetime(2027, 3, 19, 13, 50), cfg) == 2
+    assert tracker.full_days(datetime(2027, 3, 7, 8, 25), datetime(2027, 3, 10, 8, 45), cfg) == 2
+    assert tracker.full_days(datetime(2027, 3, 7, 8, 25), datetime(2027, 3, 10, 15, 0), cfg) == 3

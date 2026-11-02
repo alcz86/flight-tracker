@@ -2,7 +2,7 @@
 
 Trzy razy dziennie (GitHub Actions, ok. 7:17, 13:17 i 19:17) sprawdza w Google Flights ceny lotów do Tromsø w marcu 2027
 dla 4 dorosłych i 1 dziecka z bagażem podręcznym. Interesują go tylko pary lotów,
-które dają 2–3 pełne dni na miejscu.
+które dają 3 pełne dni na miejscu.
 
 Lotniska według priorytetu: **Katowice → Kraków → Gdańsk**. Lotnisko z niższym priorytetem
 jest polecane tylko wtedy, gdy jest tańsze o ponad 15% (`priority_tolerance_pct`).
@@ -30,8 +30,11 @@ jest polecane tylko wtedy, gdy jest tańsze o ponad 15% (`priority_tolerance_pct
 
 ## Jak liczone są pełne dni
 
-Dzień przylotu liczy się jako pełny, gdy przylot jest przed 10:00, a dzień wylotu,
-gdy wylot jest po 20:00. Godziny można zmienić w `config.json`.
+Dzień przylotu nigdy nie liczy się jako pełny. Dzień wylotu liczy się, gdy wylot
+jest od 12:00. Przykład: przylot 7.03, wylot 10.03 o 15:00 → pełne 8, 9 i 10.03;
+przy wylocie 10.03 rano pełne są tylko 8 i 9.03.
+Ustawienia: `full_day_if_arrival_before_hour: 0` i `full_day_if_departure_after_hour: 12`
+w `config.json`.
 
 ## Ograniczenia
 
