@@ -1,5 +1,7 @@
 {
   "KRK": 3833,
-  "GDN": 2429,
-  "below_alerted": {}
+  "GDN": 1694,
+  "below_alerted": {
+    "GDN": 1694
+  }
 }
