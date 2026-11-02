@@ -194,6 +194,11 @@ def fmt_leg(leg: Leg) -> str:
     )
 
 
+def _days_range(cfg: dict) -> str:
+    lo, hi = cfg["min_full_days"], cfg["max_full_days"]
+    return str(lo) if lo == hi else f"{lo}–{hi}"
+
+
 def render_report(cfg, names, trips_by_origin, recommendation, errors, now) -> str:
     cur = cfg["currency"]
     pax = cfg["passengers"]
@@ -204,7 +209,7 @@ def render_report(cfg, names, trips_by_origin, recommendation, errors, now) -> s
         f"Okres: {cfg['date_from']} – {cfg['date_to']}, "
         f"{pax.get('adults', 0)} dorosłych + {pax.get('children', 0)} dziecko, "
         f"bagaż podręczny: {cfg['carry_on_bags']}, "
-        f"{cfg['min_full_days']}–{cfg['max_full_days']} pełne dni na miejscu.  ",
+        f"{_days_range(cfg)} pełne dni na miejscu.  ",
         "Ceny to łączny koszt dla całej grupy (Google Flights, z szacunkiem opłat za bagaż podręczny).",
         "",
     ]
