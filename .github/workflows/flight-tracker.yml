@@ -2,8 +2,8 @@ name: Flight tracker Tromsø
 
 on:
   schedule:
-    # 3 razy dziennie: ok. 7:17, 13:17 i 19:17 czasu polskiego (latem; zimą godzinę wcześniej)
-    - cron: "17 5,11,17 * * *"
+    # co 2 godziny (GitHub czasem opóźnia lub pomija uruchomienia z harmonogramu)
+    - cron: "17 */2 * * *"
   workflow_dispatch:
 
 permissions:
