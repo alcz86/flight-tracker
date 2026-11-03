@@ -49,6 +49,13 @@ class Trip:
     def total(self) -> int:
         return self.outbound.price + self.inbound.price
 
+    @property
+    def nights(self) -> int:
+        return (self.inbound.departure.date() - self.outbound.arrival.date()).days
+
+    def dates(self) -> str:
+        return f"{self.outbound.departure:%d.%m} → {self.inbound.departure:%d.%m}"
+
 
 def load_config(path: Path = ROOT / "config.json") -> dict:
     with open(path, encoding="utf-8") as f:
@@ -177,12 +184,18 @@ def find_alerts(
     drop_pct = cfg.get("alert_drop_pct")
     for code, trip in best_by_origin.items():
         if threshold and trip.total < threshold and trip.total < below_alerted.get(code, threshold):
-            alerts.append(f"{code}: cena poniżej {threshold} {cfg['currency']} — {trip.total} {cfg['currency']}")
+            alerts.append(
+                f"{code}: cena poniżej {threshold} {cfg['currency']} — {trip.total} {cfg['currency']} "
+                f"({trip.dates()}, {trip.nights} noce, {trip.full_days} pełne dni)"
+            )
             below_alerted[code] = trip.total
             continue
         old = previous.get(code)
         if drop_pct and old is not None and trip.total <= old * (1 - drop_pct / 100):
-            alerts.append(f"{code}: cena spadła z {old} do {trip.total} {cfg['currency']}")
+            alerts.append(
+                f"{code}: cena spadła z {old} do {trip.total} {cfg['currency']} "
+                f"({trip.dates()}, {trip.nights} noce, {trip.full_days} pełne dni)"
+            )
     return alerts
 
 
@@ -199,7 +212,7 @@ def _days_range(cfg: dict) -> str:
     return str(lo) if lo == hi else f"{lo}–{hi}"
 
 
-def render_report(cfg, names, trips_by_origin, recommendation, errors, now) -> str:
+def render_report(cfg, names, trips_by_origin, recommendation, errors, now, cheapest=None) -> str:
     cur = cfg["currency"]
     pax = cfg["passengers"]
     lines = [
@@ -209,7 +222,7 @@ def render_report(cfg, names, trips_by_origin, recommendation, errors, now) -> s
         f"Okres: {cfg['date_from']} – {cfg['date_to']}, "
         f"{pax.get('adults', 0)} dorosłych + {pax.get('children', 0)} dziecko, "
         f"bagaż podręczny: {cfg['carry_on_bags']}, "
-        f"{_days_range(cfg)} pełne dni na miejscu.  ",
+        f"{_days_range(cfg)} pełne dni na miejscu, preferowane {cfg.get('preferred_min_nights', 0)}+ noce.  ",
         "Ceny to łączny koszt dla całej grupy (Google Flights, z szacunkiem opłat za bagaż podręczny).",
         "",
     ]
@@ -218,12 +231,19 @@ def render_report(cfg, names, trips_by_origin, recommendation, errors, now) -> s
         lines += [
             "## Polecana opcja",
             "",
-            f"**{names[r.origin]} ({r.origin}) — {r.total} {cur}**, {r.full_days} pełne dni",
+            f"**{names[r.origin]} ({r.origin}) — {r.total} {cur}**, {r.nights} noce, {r.full_days} pełne dni",
             "",
             f"- Tam: {fmt_leg(r.outbound)} — [Google Flights]({r.outbound.url})",
             f"- Powrót: {fmt_leg(r.inbound)} — [Google Flights]({r.inbound.url})",
             "",
         ]
+        if cheapest and cheapest.total < r.total:
+            c = cheapest
+            lines += [
+                f"Najtańsza ogółem (krótszy pobyt): {names[c.origin]} — **{c.total} {cur}**, "
+                f"{c.dates()}, {c.nights} noce, {c.full_days} pełne dni.",
+                "",
+            ]
     else:
         lines += ["## Brak pasujących lotów", ""]
 
@@ -232,21 +252,20 @@ def render_report(cfg, names, trips_by_origin, recommendation, errors, now) -> s
         if not trips:
             lines += ["Brak połączeń spełniających warunki.", ""]
             continue
-        lines += ["| Cena | Dni | Tam | Powrót |", "|---|---|---|---|"]
+        lines += ["| Cena | Noce | Pełne dni | Tam | Powrót |", "|---|---|---|---|---|"]
         for t in trips[: cfg["top_n"]]:
             lines.append(
-                f"| **{t.total} {cur}** | {t.full_days} | [{fmt_leg(t.outbound)}]({t.outbound.url}) "
+                f"| **{t.total} {cur}** | {t.nights} | {t.full_days} | [{fmt_leg(t.outbound)}]({t.outbound.url}) "
                 f"| [{fmt_leg(t.inbound)}]({t.inbound.url}) |"
             )
         lines.append("")
         # trips są posortowane po cenie, więc pierwsza pasująca para jest najtańsza
-        for n in range(cfg["min_full_days"], cfg["max_full_days"] + 1):
-            best_n = next((t for t in trips if t.full_days == n), None)
-            if best_n:
-                lines.append(
-                    f"- Najtaniej na {n} pełne dni: **{best_n.total} {cur}** — "
-                    f"tam {fmt_leg(best_n.outbound)}, powrót {fmt_leg(best_n.inbound)}"
-                )
+        for n in sorted({t.nights for t in trips}):
+            best_n = next(t for t in trips if t.nights == n)
+            lines.append(
+                f"- Najtaniej na {n} noce ({best_n.full_days} pełne dni): **{best_n.total} {cur}** — "
+                f"tam {fmt_leg(best_n.outbound)}, powrót {fmt_leg(best_n.inbound)}"
+            )
         lines.append("")
 
     if errors:
@@ -276,14 +295,32 @@ def run(cfg: dict, fetch=fetch_legs, sleep=time.sleep, now: datetime | None = No
         trips_by_origin[code] = combine(code, outbound, inbound, cfg)
 
     best = {c: t[0] for c, t in trips_by_origin.items() if t}
-    recommendation = pick_recommendation(best, codes, cfg["priority_tolerance_pct"])
+    # polecamy opcję z preferowaną liczbą nocy; krótsze tylko, gdy takiej nie ma
+    min_nights = cfg.get("preferred_min_nights", 0)
+    preferred = {
+        c: p for c, t in trips_by_origin.items() if (p := next((x for x in t if x.nights >= min_nights), None))
+    }
+    tol = cfg["priority_tolerance_pct"]
+    recommendation = pick_recommendation(preferred, codes, tol) or pick_recommendation(best, codes, tol)
+    cheapest = min(best.values(), key=lambda t: t.total, default=None)
 
     DATA_DIR.mkdir(exist_ok=True)
     previous = json.loads(STATE_FILE.read_text()) if STATE_FILE.exists() else {}
     below_alerted = previous.pop("below_alerted", {})
+    below_alerted_pref = previous.pop("below_alerted_preferred", {})
     alerts = find_alerts(best, previous, cfg, below_alerted)
+    # osobny alert progu dla preferowanej długości pobytu: tańsza krótsza opcja
+    # nie może zagłuszyć spadku ceny opcji z preferowaną liczbą nocy
+    if min_nights:
+        pref_cfg = {**cfg, "alert_drop_pct": None}
+        alerts += [f"[{min_nights}+ noce] {a}" for a in find_alerts(preferred, {}, pref_cfg, below_alerted_pref)]
     # nie nadpisuj stanu lotniska, dla którego tym razem nic nie pobrano
-    state = {**previous, **{c: t.total for c, t in best.items()}, "below_alerted": below_alerted}
+    state = {
+        **previous,
+        **{c: t.total for c, t in best.items()},
+        "below_alerted": below_alerted,
+        "below_alerted_preferred": below_alerted_pref,
+    }
     STATE_FILE.write_text(json.dumps(state, indent=2))
 
     new_file = not HISTORY_FILE.exists()
@@ -313,7 +350,7 @@ def run(cfg: dict, fetch=fetch_legs, sleep=time.sleep, now: datetime | None = No
                     f"{t.outbound.stops}+{t.inbound.stops}",
                 ])
 
-    report = render_report(cfg, names, trips_by_origin, recommendation, errors, now)
+    report = render_report(cfg, names, trips_by_origin, recommendation, errors, now, cheapest)
     REPORT_FILE.write_text(report, encoding="utf-8")
 
     if alerts:

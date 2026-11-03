@@ -1,8 +1,10 @@
 # Tracker lotów do Tromsø
 
-Trzy razy dziennie (GitHub Actions, ok. 7:17, 13:17 i 19:17) sprawdza w Google Flights ceny lotów do Tromsø w marcu 2027
+Co 2 godziny (GitHub Actions) sprawdza w Google Flights ceny lotów do Tromsø w marcu 2027
 dla 4 dorosłych i 1 dziecka z bagażem podręcznym. Interesują go tylko pary lotów,
-które dają 2–3 pełne dni na miejscu (najlepiej 3).
+które dają 2–3 pełne dni na miejscu. Preferowane są 3 noce: polecana opcja
+to najtańsza z co najmniej 3 nocami (`preferred_min_nights`), a 2 noce tylko gdy
+wylot powrotny jest po południu.
 
 Lotniska według priorytetu: **Katowice → Kraków → Gdańsk**. Lotnisko z niższym priorytetem
 jest polecane tylko wtedy, gdy jest tańsze o ponad 15% (`priority_tolerance_pct`).
@@ -14,6 +16,8 @@ jest polecane tylko wtedy, gdy jest tańsze o ponad 15% (`priority_tolerance_pct
 - Powiadomienie: issue „Tracker lotów do Tromsø” z oznaczeniem właściciela repo
   (GitHub wysyła mail), gdy najtańsza opcja z któregoś lotniska spadnie poniżej
   2000 zł (`alert_below_total_pln`). Kolejny alert przychodzi tylko przy jeszcze niższej cenie.
+  Osobny alert „[3+ noce]” przychodzi, gdy poniżej progu spadnie opcja z preferowaną
+  liczbą nocy, nawet jeśli krótszy pobyt jest jeszcze tańszy.
   Alerty o każdym spadku ceny (`alert_drop_pct`) są wyłączone (`null`), bo Google
   czasem chwilowo nie pokazuje lotu i dawało to fałszywe alarmy.
 - `data/trips_latest.csv` – wszystkie pary lotów z ostatniego sprawdzenia.

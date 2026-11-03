@@ -68,11 +68,11 @@ def test_alerts_on_drop_and_threshold():
     cfg = {**CFG, "alert_drop_pct": 5, "alert_below_total_pln": 5000}
     best = {"KTW": _trip("KTW", 4500), "KRK": _trip("KRK", 6000), "GDN": _trip("GDN", 5100)}
     alerts = tracker.find_alerts(best, {"KTW": 4800, "KRK": 6100, "GDN": 5300}, cfg)
-    assert alerts == ["KTW: cena poniżej 5000 PLN — 4500 PLN"]
+    assert alerts == ["KTW: cena poniżej 5000 PLN — 4500 PLN (05.03 → 08.03, 3 noce, 2 pełne dni)"]
     assert tracker.find_alerts(best, {}, {**cfg, "alert_below_total_pln": None}) == []
     best["KRK"] = _trip("KRK", 5500)
     assert tracker.find_alerts(best, {"KRK": 6000}, {**cfg, "alert_below_total_pln": None}) == [
-        "KRK: cena spadła z 6000 do 5500 PLN"
+        "KRK: cena spadła z 6000 do 5500 PLN (05.03 → 08.03, 3 noce, 2 pełne dni)"
     ]
 
 
@@ -80,11 +80,11 @@ def test_threshold_alert_only_for_new_lower_price():
     cfg = {**CFG, "alert_drop_pct": None, "alert_below_total_pln": 2000}
     alerted = {}
     assert tracker.find_alerts({"GDN": _trip("GDN", 2100)}, {}, cfg, alerted) == []
-    assert tracker.find_alerts({"GDN": _trip("GDN", 1950)}, {}, cfg, alerted) == ["GDN: cena poniżej 2000 PLN — 1950 PLN"]
+    assert tracker.find_alerts({"GDN": _trip("GDN", 1950)}, {}, cfg, alerted) == ["GDN: cena poniżej 2000 PLN — 1950 PLN (05.03 → 08.03, 3 noce, 2 pełne dni)"]
     # lot na chwilę znika z wyników, potem wraca z tą samą ceną -> bez ponownego alertu
     assert tracker.find_alerts({"GDN": _trip("GDN", 2300)}, {}, cfg, alerted) == []
     assert tracker.find_alerts({"GDN": _trip("GDN", 1950)}, {}, cfg, alerted) == []
-    assert tracker.find_alerts({"GDN": _trip("GDN", 1890)}, {}, cfg, alerted) == ["GDN: cena poniżej 2000 PLN — 1890 PLN"]
+    assert tracker.find_alerts({"GDN": _trip("GDN", 1890)}, {}, cfg, alerted) == ["GDN: cena poniżej 2000 PLN — 1890 PLN (05.03 → 08.03, 3 noce, 2 pełne dni)"]
 
 
 def test_run_end_to_end(tmp_path, monkeypatch):
@@ -113,7 +113,7 @@ def test_run_end_to_end(tmp_path, monkeypatch):
     assert json.loads((tmp_path / "data" / "state.json").read_text())["KTW"] == 1600
     trips_csv = (tmp_path / "data" / "trips_latest.csv").read_text().splitlines()
     assert trips_csv[0].startswith("origin,total,full_days") and len(trips_csv) > 3
-    assert "Najtaniej na 2 pełne dni" in (tmp_path / "REPORT.md").read_text()
+    assert "Najtaniej na 3 noce" in (tmp_path / "REPORT.md").read_text()
 
     prices["KTW"] = 500
     result = tracker.run({**CFG, "alert_drop_pct": 5}, fetch=fake_fetch, sleep=lambda s: None, now=datetime(2026, 10, 6))
@@ -126,3 +126,57 @@ def test_full_days_with_current_config():
     assert tracker.full_days(datetime(2027, 3, 17, 8, 10), datetime(2027, 3, 19, 13, 50), cfg) == 2
     assert tracker.full_days(datetime(2027, 3, 7, 8, 25), datetime(2027, 3, 10, 8, 45), cfg) == 2
     assert tracker.full_days(datetime(2027, 3, 7, 8, 25), datetime(2027, 3, 10, 15, 0), cfg) == 3
+
+
+def test_recommendation_prefers_three_nights():
+    cfg = {**tracker.load_config(), "date_from": "2027-03-05", "date_to": "2027-03-12", "request_delay_seconds": 0}
+
+    def fake_fetch(o, d, day: date, cfg):
+        if o == "GDN" and day == date(2027, 3, 5):
+            return [leg(o, d, datetime(2027, 3, 5, 5, 30), datetime(2027, 3, 5, 8, 10), 500)]
+        if d == "GDN" and day == date(2027, 3, 7):  # 2 noce, wylot po południu -> 2 pełne dni
+            return [leg(o, d, datetime(2027, 3, 7, 13, 50), datetime(2027, 3, 7, 16, 40), 1000)]
+        if d == "GDN" and day == date(2027, 3, 8):  # 3 noce, wylot rano -> 2 pełne dni
+            return [leg(o, d, datetime(2027, 3, 8, 9, 0), datetime(2027, 3, 8, 11, 50), 1400)]
+        return []
+
+    trips = tracker.combine("GDN", fake_fetch("GDN", "TOS", date(2027, 3, 5), cfg),
+                            fake_fetch("TOS", "GDN", date(2027, 3, 7), cfg)
+                            + fake_fetch("TOS", "GDN", date(2027, 3, 8), cfg), cfg)
+    assert [(t.nights, t.full_days, t.total) for t in trips] == [(2, 2, 1500), (3, 2, 1900)]
+    # 2 noce z wylotem rano -> tylko 1 pełny dzień, odrzucone
+    morning = leg("TOS", "GDN", datetime(2027, 3, 7, 9, 0), datetime(2027, 3, 7, 11, 50), 100)
+    assert tracker.combine("GDN", fake_fetch("GDN", "TOS", date(2027, 3, 5), cfg), [morning], cfg) == []
+
+    pref = {c: next(t for t in trips if t.nights >= 3) for c in ["GDN"]}
+    assert tracker.pick_recommendation(pref, ["GDN"], 15).total == 1900
+
+
+def test_preferred_nights_get_their_own_threshold_alert(tmp_path, monkeypatch):
+    for name, fname in [("DATA_DIR", "data"), ("REPORT_FILE", "REPORT.md"), ("ALERT_FILE", "alert.md")]:
+        monkeypatch.setattr(tracker, name, tmp_path / fname)
+    monkeypatch.setattr(tracker, "STATE_FILE", tmp_path / "data" / "state.json")
+    monkeypatch.setattr(tracker, "HISTORY_FILE", tmp_path / "data" / "history.csv")
+    monkeypatch.setattr(tracker, "TRIPS_FILE", tmp_path / "data" / "trips_latest.csv")
+    monkeypatch.delenv("GITHUB_OUTPUT", raising=False)
+    cfg = {**tracker.load_config(), "date_from": "2027-03-05", "date_to": "2027-03-08",
+           "request_delay_seconds": 0, "origins": [{"code": "GDN", "name": "Gdańsk"}]}
+    price3 = {"v": 2100}
+
+    def fake_fetch(o, d, day: date, cfg):
+        if o == "GDN" and day == date(2027, 3, 5):
+            return [leg(o, d, datetime(2027, 3, 5, 5, 30), datetime(2027, 3, 5, 8, 10), 500)]
+        if d == "GDN" and day == date(2027, 3, 7):  # 2 noce, 1500 zł łącznie
+            return [leg(o, d, datetime(2027, 3, 7, 13, 50), datetime(2027, 3, 7, 16, 40), 1000)]
+        if d == "GDN" and day == date(2027, 3, 8):  # 3 noce
+            return [leg(o, d, datetime(2027, 3, 8, 9, 0), datetime(2027, 3, 8, 11, 50), price3["v"] - 500)]
+        return []
+
+    r = tracker.run(cfg, fetch=fake_fetch, sleep=lambda s: None, now=datetime(2026, 11, 3))
+    assert r["recommendation"].nights == 3 and r["recommendation"].total == 2100
+    assert r["alerts"] == ["GDN: cena poniżej 2000 PLN — 1500 PLN (05.03 → 07.03, 2 noce, 2 pełne dni)"]
+    assert "Najtańsza ogółem" in (tmp_path / "REPORT.md").read_text()
+
+    price3["v"] = 1900
+    r = tracker.run(cfg, fetch=fake_fetch, sleep=lambda s: None, now=datetime(2026, 11, 3, 2))
+    assert r["alerts"] == ["[3+ noce] GDN: cena poniżej 2000 PLN — 1900 PLN (05.03 → 08.03, 3 noce, 2 pełne dni)"]
