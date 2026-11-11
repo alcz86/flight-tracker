@@ -1,10 +1,10 @@
 {
-  "KRK": 5109,
-  "GDN": 3175,
+  "KRK": 5269,
+  "GDN": 1453,
   "below_alerted": {
     "GDN": 1357
   },
   "below_alerted_preferred": {
-    "GDN": 1827
+    "GDN": 1453
   }
 }
