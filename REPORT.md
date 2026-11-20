@@ -1,15 +1,17 @@
 # Tracker lotów do Tromsø
 
-Ostatnie sprawdzenie: **2026-11-20 03:22 UTC**  
+Ostatnie sprawdzenie: **2026-11-20 12:58 UTC**  
 Okres: 2027-03-01 – 2027-03-31, 4 dorosłych + 1 dziecko, bagaż podręczny: 1, 2–3 pełne dni na miejscu, preferowane 3+ noce.  
 Ceny to łączny koszt dla całej grupy (Google Flights, z szacunkiem opłat za bagaż podręczny).
 
 ## Polecana opcja
 
-**Gdańsk (GDN) — 1273 PLN**, 3 noce, 2 pełne dni
+**Gdańsk (GDN) — 1277 PLN**, 3 noce, 2 pełne dni
 
 - Tam: Mon 01.03 05:30 → 08:25 (Wizz Air, bezpośredni) — 695 zł — [Google Flights](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMDEoAWoFEgNHRE5yBRIDVE9TQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN)
-- Powrót: Thu 04.03 09:00 → 11:50 (Wizz Air, bezpośredni) — 578 zł — [Google Flights](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMDQoAWoFEgNUT1NyBRIDR0ROQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN)
+- Powrót: Thu 04.03 09:00 → 11:50 (Wizz Air, bezpośredni) — 582 zł — [Google Flights](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMDQoAWoFEgNUT1NyBRIDR0ROQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN)
+
+Najtańsza ogółem (krótszy pobyt): Gdańsk — **1127 PLN**, 10.03 → 12.03, 2 noce, 2 pełne dni.
 
 ## Katowice (KTW)
 
@@ -19,28 +21,29 @@ Brak połączeń spełniających warunki.
 
 | Cena | Noce | Pełne dni | Tam | Powrót |
 |---|---|---|---|---|
-| **5403 PLN** | 4 | 3 | [Fri 05.03 21:50 → 09:30 (Norwegian, 1 przesiadka) — 2625 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMDUoAWoFEgNLUktyBRIDVE9TQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) | [Wed 10.03 06:10 → 12:05 (Norwegian, 1 przesiadka) — 2778 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMTAoAWoFEgNUT1NyBRIDS1JLQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) |
-| **5620 PLN** | 4 | 3 | [Thu 04.03 12:45 → 23:30 (Norwegian, 1 przesiadka) — 2655 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMDQoAWoFEgNLUktyBRIDVE9TQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) | [Mon 08.03 06:10 → 12:05 (Norwegian, 1 przesiadka) — 2965 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMDgoAWoFEgNUT1NyBRIDS1JLQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) |
-| **5620 PLN** | 4 | 3 | [Thu 11.03 12:45 → 23:30 (Norwegian, 1 przesiadka) — 2655 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMTEoAWoFEgNLUktyBRIDVE9TQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) | [Mon 15.03 06:10 → 12:05 (Norwegian, 1 przesiadka) — 2965 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMTUoAWoFEgNUT1NyBRIDS1JLQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) |
-| **5980 PLN** | 3 | 3 | [Thu 11.03 12:45 → 23:30 (Norwegian, 1 przesiadka) — 2655 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMTEoAWoFEgNLUktyBRIDVE9TQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) | [Sun 14.03 14:10 → 20:00 (Norwegian, 1 przesiadka) — 3325 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMTQoAWoFEgNUT1NyBRIDS1JLQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) |
-| **6063 PLN** | 3 | 3 | [Thu 11.03 12:45 → 23:30 (Norwegian, 1 przesiadka) — 2655 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMTEoAWoFEgNLUktyBRIDVE9TQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) | [Sun 14.03 15:10 → 20:10 (Norwegian, 1 przesiadka) — 3408 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMTQoAWoFEgNUT1NyBRIDS1JLQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) |
+| **5444 PLN** | 3 | 2 | [Fri 12.03 21:50 → 09:30 (Norwegian, 1 przesiadka) — 2440 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMTIoAWoFEgNLUktyBRIDVE9TQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) | [Tue 16.03 06:10 → 12:05 (Norwegian, 1 przesiadka) — 3004 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMTYoAWoFEgNUT1NyBRIDS1JLQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) |
+| **5638 PLN** | 4 | 3 | [Thu 04.03 12:45 → 23:30 (Norwegian, 1 przesiadka) — 2655 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMDQoAWoFEgNLUktyBRIDVE9TQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) | [Mon 08.03 06:10 → 12:05 (Norwegian, 1 przesiadka) — 2983 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMDgoAWoFEgNUT1NyBRIDS1JLQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) |
+| **5638 PLN** | 4 | 3 | [Thu 11.03 12:45 → 23:30 (Norwegian, 1 przesiadka) — 2655 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMTEoAWoFEgNLUktyBRIDVE9TQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) | [Mon 15.03 06:10 → 12:05 (Norwegian, 1 przesiadka) — 2983 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMTUoAWoFEgNUT1NyBRIDS1JLQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) |
+| **5638 PLN** | 3 | 2 | [Fri 12.03 12:45 → 21:45 (Norwegian, 1 przesiadka) — 2655 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMTIoAWoFEgNLUktyBRIDVE9TQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) | [Mon 15.03 06:10 → 12:05 (Norwegian, 1 przesiadka) — 2983 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMTUoAWoFEgNUT1NyBRIDS1JLQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) |
+| **5659 PLN** | 4 | 3 | [Fri 12.03 12:45 → 21:45 (Norwegian, 1 przesiadka) — 2655 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMTIoAWoFEgNLUktyBRIDVE9TQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) | [Tue 16.03 06:10 → 12:05 (Norwegian, 1 przesiadka) — 3004 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMTYoAWoFEgNUT1NyBRIDS1JLQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) |
 
-- Najtaniej na 2 noce (2 pełne dni): **8132 PLN** — tam Fri 26.03 12:45 → 21:45 (Norwegian, 1 przesiadka) — 3305 zł, powrót Sun 28.03 12:55 → 21:10 (Norwegian, 1 przesiadka) — 4827 zł
-- Najtaniej na 3 noce (3 pełne dni): **5980 PLN** — tam Thu 11.03 12:45 → 23:30 (Norwegian, 1 przesiadka) — 2655 zł, powrót Sun 14.03 14:10 → 20:00 (Norwegian, 1 przesiadka) — 3325 zł
-- Najtaniej na 4 noce (3 pełne dni): **5403 PLN** — tam Fri 05.03 21:50 → 09:30 (Norwegian, 1 przesiadka) — 2625 zł, powrót Wed 10.03 06:10 → 12:05 (Norwegian, 1 przesiadka) — 2778 zł
+- Najtaniej na 2 noce (2 pełne dni): **6001 PLN** — tam Fri 12.03 12:45 → 21:45 (Norwegian, 1 przesiadka) — 2655 zł, powrót Sun 14.03 14:10 → 20:00 (Norwegian, 1 przesiadka) — 3346 zł
+- Najtaniej na 3 noce (2 pełne dni): **5444 PLN** — tam Fri 12.03 21:50 → 09:30 (Norwegian, 1 przesiadka) — 2440 zł, powrót Tue 16.03 06:10 → 12:05 (Norwegian, 1 przesiadka) — 3004 zł
+- Najtaniej na 4 noce (3 pełne dni): **5638 PLN** — tam Thu 04.03 12:45 → 23:30 (Norwegian, 1 przesiadka) — 2655 zł, powrót Mon 08.03 06:10 → 12:05 (Norwegian, 1 przesiadka) — 2983 zł
 
 ## Gdańsk (GDN)
 
 | Cena | Noce | Pełne dni | Tam | Powrót |
 |---|---|---|---|---|
-| **1273 PLN** | 3 | 2 | [Mon 01.03 05:30 → 08:25 (Wizz Air, bezpośredni) — 695 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMDEoAWoFEgNHRE5yBRIDVE9TQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) | [Thu 04.03 09:00 → 11:50 (Wizz Air, bezpośredni) — 578 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMDQoAWoFEgNUT1NyBRIDR0ROQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) |
-| **2321 PLN** | 3 | 2 | [Sun 07.03 05:30 → 08:25 (Wizz Air, bezpośredni) — 1495 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMDcoAWoFEgNHRE5yBRIDVE9TQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) | [Wed 10.03 08:45 → 11:50 (Wizz Air, bezpośredni) — 826 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMTAoAWoFEgNUT1NyBRIDR0ROQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) |
-| **3266 PLN** | 3 | 2 | [Mon 01.03 05:30 → 08:25 (Wizz Air, bezpośredni) — 695 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMDEoAWoFEgNHRE5yBRIDVE9TQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) | [Thu 04.03 06:10 → 11:25 (Norwegian, 1 przesiadka) — 2571 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMDQoAWoFEgNUT1NyBRIDR0ROQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) |
-| **3413 PLN** | 3 | 2 | [Mon 01.03 12:05 → 17:05 (Norwegian, 1 przesiadka) — 2835 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMDEoAWoFEgNHRE5yBRIDVE9TQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) | [Thu 04.03 09:00 → 11:50 (Wizz Air, bezpośredni) — 578 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMDQoAWoFEgNUT1NyBRIDR0ROQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) |
-| **3866 PLN** | 4 | 3 | [Fri 12.03 10:20 → 13:15 (Wizz Air, bezpośredni) — 1295 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMTIoAWoFEgNHRE5yBRIDVE9TQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) | [Tue 16.03 06:10 → 11:25 (Norwegian, 1 przesiadka) — 2571 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMTYoAWoFEgNUT1NyBRIDR0ROQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) |
+| **1127 PLN** | 2 | 2 | [Wed 10.03 05:30 → 08:10 (Wizz Air, bezpośredni) — 545 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMTAoAWoFEgNHRE5yBRIDVE9TQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) | [Fri 12.03 13:50 → 16:40 (Wizz Air, bezpośredni) — 582 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMTIoAWoFEgNUT1NyBRIDR0ROQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) |
+| **1277 PLN** | 3 | 2 | [Mon 01.03 05:30 → 08:25 (Wizz Air, bezpośredni) — 695 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMDEoAWoFEgNHRE5yBRIDVE9TQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) | [Thu 04.03 09:00 → 11:50 (Wizz Air, bezpośredni) — 582 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMDQoAWoFEgNUT1NyBRIDR0ROQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) |
+| **1606 PLN** | 4 | 3 | [Wed 10.03 05:30 → 08:10 (Wizz Air, bezpośredni) — 545 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMTAoAWoFEgNHRE5yBRIDVE9TQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) | [Sun 14.03 09:00 → 11:50 (Wizz Air, bezpośredni) — 1061 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMTQoAWoFEgNUT1NyBRIDR0ROQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) |
+| **1810 PLN** | 3 | 2 | [Sun 14.03 05:30 → 08:25 (Wizz Air, bezpośredni) — 895 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMTQoAWoFEgNHRE5yBRIDVE9TQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) | [Wed 17.03 08:45 → 11:50 (Wizz Air, bezpośredni) — 915 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMTcoAWoFEgNUT1NyBRIDR0ROQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) |
+| **2039 PLN** | 2 | 2 | [Mon 29.03 18:50 → 21:35 (Wizz Air, bezpośredni) — 895 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMjkoAWoFEgNHRE5yBRIDVE9TQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) | [Wed 31.03 22:10 → 00:55 (Wizz Air, bezpośredni) — 1144 zł](https://www.google.com/travel/flights/search?tfs=GhwSCjIwMjctMDMtMzEoAWoFEgNUT1NyBRIDR0ROQgUBAQEBAkgBagQQARgAmAEC&hl=en&curr=PLN) |
 
-- Najtaniej na 3 noce (2 pełne dni): **1273 PLN** — tam Mon 01.03 05:30 → 08:25 (Wizz Air, bezpośredni) — 695 zł, powrót Thu 04.03 09:00 → 11:50 (Wizz Air, bezpośredni) — 578 zł
-- Najtaniej na 4 noce (3 pełne dni): **3866 PLN** — tam Fri 12.03 10:20 → 13:15 (Wizz Air, bezpośredni) — 1295 zł, powrót Tue 16.03 06:10 → 11:25 (Norwegian, 1 przesiadka) — 2571 zł
+- Najtaniej na 2 noce (2 pełne dni): **1127 PLN** — tam Wed 10.03 05:30 → 08:10 (Wizz Air, bezpośredni) — 545 zł, powrót Fri 12.03 13:50 → 16:40 (Wizz Air, bezpośredni) — 582 zł
+- Najtaniej na 3 noce (2 pełne dni): **1277 PLN** — tam Mon 01.03 05:30 → 08:25 (Wizz Air, bezpośredni) — 695 zł, powrót Thu 04.03 09:00 → 11:50 (Wizz Air, bezpośredni) — 582 zł
+- Najtaniej na 4 noce (3 pełne dni): **1606 PLN** — tam Wed 10.03 05:30 → 08:10 (Wizz Air, bezpośredni) — 545 zł, powrót Sun 14.03 09:00 → 11:50 (Wizz Air, bezpośredni) — 1061 zł
 
 ## Problemy z pobieraniem
 
